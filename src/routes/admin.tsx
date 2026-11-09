@@ -14,6 +14,7 @@ const sections: readonly { to: string; label: string; roles: readonly Role[]; ex
   { to: "/admin/clubes", label: "Clubes", roles: ADMIN_ONLY },
   { to: "/admin/competicoes", label: "Competições e épocas", roles: ADMIN_ONLY },
   { to: "/admin/documentos", label: "Documentos", roles: ADMIN_ONLY },
+  { to: "/admin/site", label: "Aparência do site", roles: ADMIN_ONLY },
   { to: "/admin/utilizadores", label: "Utilizadores", roles: ADMIN_ONLY },
   { to: "/admin/registo", label: "Registo", roles: ADMIN_ONLY },
   { to: "/admin/conta", label: "A minha conta", roles: ["admin", "manager", "user"] },
