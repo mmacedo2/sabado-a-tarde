@@ -8,6 +8,7 @@ import { auditRoutes } from "./routes/admin/audit";
 import { crudRoutes } from "./routes/admin/crud";
 import { gameRoutes } from "./routes/admin/games";
 import { seasonRoutes } from "./routes/admin/seasons";
+import { settingsRoutes } from "./routes/admin/settings";
 import { transferRoutes } from "./routes/admin/transfers";
 import { uploadRoutes } from "./routes/admin/uploads";
 import { userRoutes } from "./routes/admin/users";
@@ -23,6 +24,7 @@ const admin = new Hono<AppEnv>()
   })
   .route("/users", userRoutes)
   .route("/seasons", seasonRoutes)
+  .route("/settings", settingsRoutes)
   .route("/games", gameRoutes)
   .route("/articles", articleRoutes)
   .route("/transfers", transferRoutes)
