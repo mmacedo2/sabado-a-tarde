@@ -6,6 +6,7 @@ import { HttpError, notFound, parseId } from "../lib/http";
 import { gamesQuery, resolveSeasonId } from "../lib/queries";
 import { computeStandings, type StandingsGame } from "../lib/standings";
 import { gameStatuses } from "../schemas";
+import { readSettings } from "./admin/settings";
 
 export const publicRoutes = new Hono<AppEnv>();
 
@@ -34,6 +35,7 @@ publicRoutes.get("/catalog", async (c) => {
     ),
   ]);
   return c.json({
+    settings: await readSettings(c.env.DB),
     seasons: allToApi(seasons!.results as Record<string, unknown>[]),
     clubs: allToApi(clubs!.results as Record<string, unknown>[]),
     competitions: allToApi(competitions!.results as Record<string, unknown>[]),

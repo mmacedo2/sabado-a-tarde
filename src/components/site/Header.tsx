@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
-import logo from "@/assets/sabado-logo.png";
 import { AccountMenu } from "@/components/site/AccountMenu";
 import { useLogout, useSession } from "@/hooks/use-session";
 import { useCatalog } from "@/lib/catalog";
@@ -15,12 +14,11 @@ const nav = [
   { label: "Transferências", to: "/transferencias" },
   { label: "Documentos", to: "/documentos" },
   { label: "A AFPG", to: "/associacao" },
-  { label: "Contactos", to: "/contactos" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { competitions } = useCatalog();
+  const { logo, competitions } = useCatalog();
   const { user, isAdmin, canEditGames } = useSession();
   const logout = useLogout();
 
