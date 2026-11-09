@@ -42,7 +42,14 @@ export type Competition = {
   visible?: boolean;
 };
 
-export type Catalog = { seasons: Season[]; clubs: Club[]; competitions: Competition[] };
+export type SiteSettings = { logoUrl: string | null };
+
+export type Catalog = {
+  settings: SiteSettings;
+  seasons: Season[];
+  clubs: Club[];
+  competitions: Competition[];
+};
 
 export type GameStatus = "scheduled" | "live" | "halftime" | "finished" | "postponed" | "cancelled";
 
