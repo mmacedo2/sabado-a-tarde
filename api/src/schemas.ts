@@ -47,6 +47,9 @@ const link = z
 const id = z.number().int().positive();
 const goals = z.number().int().min(0).max(99).nullable().optional();
 
+/** Site-wide settings; omitted fields are left as they are, "" restores the default. */
+export const settingsSchema = z.object({ logoUrl: link }).strict();
+
 export const loginSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
   password: z.string().min(1).max(200),

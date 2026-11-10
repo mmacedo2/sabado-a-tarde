@@ -14,7 +14,7 @@ import { Route as CompetitionRouteImport } from './routes/$competition'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AssociacaoRouteImport } from './routes/associacao'
 import { Route as ClassificacoesRouteImport } from './routes/classificacoes'
-import { Route as ContactosRouteImport } from './routes/contactos'
+import { Route as CompeticoesRouteImport } from './routes/competicoes'
 import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as GaleriaRouteImport } from './routes/galeria'
@@ -27,6 +27,7 @@ import { Route as AdminContaRouteImport } from './routes/admin.conta'
 import { Route as AdminDocumentosRouteImport } from './routes/admin.documentos'
 import { Route as AdminJogadoresRouteImport } from './routes/admin.jogadores'
 import { Route as AdminRegistoRouteImport } from './routes/admin.registo'
+import { Route as AdminSiteRouteImport } from './routes/admin.site'
 import { Route as AdminTransferenciasRouteImport } from './routes/admin.transferencias'
 import { Route as AdminUtilizadoresRouteImport } from './routes/admin.utilizadores'
 import { Route as ClubesIndexRouteImport } from './routes/clubes.index'
@@ -64,9 +65,9 @@ const ClassificacoesRoute = ClassificacoesRouteImport.update({
   path: '/classificacoes',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactosRoute = ContactosRouteImport.update({
-  id: '/contactos',
-  path: '/contactos',
+const CompeticoesRoute = CompeticoesRouteImport.update({
+  id: '/competicoes',
+  path: '/competicoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentosRoute = DocumentosRouteImport.update({
@@ -127,6 +128,11 @@ const AdminJogadoresRoute = AdminJogadoresRouteImport.update({
 const AdminRegistoRoute = AdminRegistoRouteImport.update({
   id: '/registo',
   path: '/registo',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSiteRoute = AdminSiteRouteImport.update({
+  id: '/site',
+  path: '/site',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminTransferenciasRoute = AdminTransferenciasRouteImport.update({
@@ -191,7 +197,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
-  '/contactos': typeof ContactosRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/admin/documentos': typeof AdminDocumentosRoute
   '/admin/jogadores': typeof AdminJogadoresRoute
   '/admin/registo': typeof AdminRegistoRoute
+  '/admin/site': typeof AdminSiteRoute
   '/admin/transferencias': typeof AdminTransferenciasRoute
   '/admin/utilizadores': typeof AdminUtilizadoresRoute
   '/clubes/$slug': typeof ClubesSlugRoute
@@ -221,7 +228,7 @@ export interface FileRoutesByTo {
   '/$competition': typeof CompetitionRoute
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
-  '/contactos': typeof ContactosRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/admin/documentos': typeof AdminDocumentosRoute
   '/admin/jogadores': typeof AdminJogadoresRoute
   '/admin/registo': typeof AdminRegistoRoute
+  '/admin/site': typeof AdminSiteRoute
   '/admin/transferencias': typeof AdminTransferenciasRoute
   '/admin/utilizadores': typeof AdminUtilizadoresRoute
   '/clubes/$slug': typeof ClubesSlugRoute
@@ -253,7 +261,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
-  '/contactos': typeof ContactosRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/admin/documentos': typeof AdminDocumentosRoute
   '/admin/jogadores': typeof AdminJogadoresRoute
   '/admin/registo': typeof AdminRegistoRoute
+  '/admin/site': typeof AdminSiteRoute
   '/admin/transferencias': typeof AdminTransferenciasRoute
   '/admin/utilizadores': typeof AdminUtilizadoresRoute
   '/clubes/$slug': typeof ClubesSlugRoute
@@ -286,7 +295,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/associacao'
     | '/classificacoes'
-    | '/contactos'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/admin/documentos'
     | '/admin/jogadores'
     | '/admin/registo'
+    | '/admin/site'
     | '/admin/transferencias'
     | '/admin/utilizadores'
     | '/clubes/$slug'
@@ -316,7 +326,7 @@ export interface FileRouteTypes {
     | '/$competition'
     | '/associacao'
     | '/classificacoes'
-    | '/contactos'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -328,6 +338,7 @@ export interface FileRouteTypes {
     | '/admin/documentos'
     | '/admin/jogadores'
     | '/admin/registo'
+    | '/admin/site'
     | '/admin/transferencias'
     | '/admin/utilizadores'
     | '/clubes/$slug'
@@ -347,7 +358,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/associacao'
     | '/classificacoes'
-    | '/contactos'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -359,6 +370,7 @@ export interface FileRouteTypes {
     | '/admin/documentos'
     | '/admin/jogadores'
     | '/admin/registo'
+    | '/admin/site'
     | '/admin/transferencias'
     | '/admin/utilizadores'
     | '/clubes/$slug'
@@ -379,7 +391,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AssociacaoRoute: typeof AssociacaoRoute
   ClassificacoesRoute: typeof ClassificacoesRoute
-  ContactosRoute: typeof ContactosRoute
+  CompeticoesRoute: typeof CompeticoesRoute
   DocumentosRoute: typeof DocumentosRoute
   EntrarRoute: typeof EntrarRoute
   GaleriaRoute: typeof GaleriaRoute
@@ -429,11 +441,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClassificacoesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contactos': {
-      id: '/contactos'
-      path: '/contactos'
-      fullPath: '/contactos'
-      preLoaderRoute: typeof ContactosRouteImport
+    '/competicoes': {
+      id: '/competicoes'
+      path: '/competicoes'
+      fullPath: '/competicoes'
+      preLoaderRoute: typeof CompeticoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentos': {
@@ -518,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/registo'
       fullPath: '/admin/registo'
       preLoaderRoute: typeof AdminRegistoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/site': {
+      id: '/admin/site'
+      path: '/site'
+      fullPath: '/admin/site'
+      preLoaderRoute: typeof AdminSiteRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/transferencias': {
@@ -607,6 +626,7 @@ interface AdminRouteChildren {
   AdminDocumentosRoute: typeof AdminDocumentosRoute
   AdminJogadoresRoute: typeof AdminJogadoresRoute
   AdminRegistoRoute: typeof AdminRegistoRoute
+  AdminSiteRoute: typeof AdminSiteRoute
   AdminTransferenciasRoute: typeof AdminTransferenciasRoute
   AdminUtilizadoresRoute: typeof AdminUtilizadoresRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -623,6 +643,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminDocumentosRoute: AdminDocumentosRoute,
   AdminJogadoresRoute: AdminJogadoresRoute,
   AdminRegistoRoute: AdminRegistoRoute,
+  AdminSiteRoute: AdminSiteRoute,
   AdminTransferenciasRoute: AdminTransferenciasRoute,
   AdminUtilizadoresRoute: AdminUtilizadoresRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -640,7 +661,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   AssociacaoRoute: AssociacaoRoute,
   ClassificacoesRoute: ClassificacoesRoute,
-  ContactosRoute: ContactosRoute,
+  CompeticoesRoute: CompeticoesRoute,
   DocumentosRoute: DocumentosRoute,
   EntrarRoute: EntrarRoute,
   GaleriaRoute: GaleriaRoute,

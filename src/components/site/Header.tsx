@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
-import logo from "@/assets/sabado-logo.png";
 import { AccountMenu } from "@/components/site/AccountMenu";
 import { useLogout, useSession } from "@/hooks/use-session";
 import { useCatalog } from "@/lib/catalog";
@@ -15,12 +14,11 @@ const nav = [
   { label: "Transferências", to: "/transferencias" },
   { label: "Documentos", to: "/documentos" },
   { label: "A AFPG", to: "/associacao" },
-  { label: "Contactos", to: "/contactos" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { competitions } = useCatalog();
+  const { logo, competitions } = useCatalog();
   const { user, isAdmin, canEditGames } = useSession();
   const logout = useLogout();
 
@@ -47,9 +45,16 @@ export function Header() {
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
           <div className="group relative">
-            <button className="eyebrow rounded-md px-3 py-2 text-ink-muted transition-colors hover:bg-white/5 hover:text-ink-foreground">
+            <Link
+              to="/competicoes"
+              className="eyebrow inline-flex rounded-md px-3 py-2 text-ink-muted transition-colors hover:bg-white/5 hover:text-ink-foreground"
+              activeProps={{
+                className:
+                  "eyebrow inline-flex rounded-md px-3 py-2 text-ink-foreground bg-white/10",
+              }}
+            >
               Competições
-            </button>
+            </Link>
             <div className="invisible absolute left-0 top-full w-64 translate-y-1 rounded-lg border border-ink-border bg-ink p-2 opacity-0 shadow-lift transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               {competitions.map((c) => (
                 <Link
@@ -110,7 +115,13 @@ export function Header() {
       {open && (
         <div className="border-t border-ink-border bg-ink xl:hidden">
           <nav className="container-afpg grid gap-1 py-4" aria-label="Navegação móvel">
-            <p className="eyebrow px-3 pt-2 text-primary">Competições</p>
+            <Link
+              to="/competicoes"
+              onClick={() => setOpen(false)}
+              className="eyebrow px-3 pt-2 text-primary hover:underline"
+            >
+              Competições →
+            </Link>
             {competitions.map((c) => (
               <Link
                 key={c.slug}

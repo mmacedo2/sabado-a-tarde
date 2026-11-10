@@ -1,11 +1,9 @@
 import { Link } from "@tanstack/react-router";
 
-import logo from "@/assets/sabado-logo.png";
-import { ASSOCIATION } from "@/data/afpg";
 import { useCatalog } from "@/lib/catalog";
 
 export function Footer() {
-  const { competitions, season } = useCatalog();
+  const { logo, competitions, season } = useCatalog();
   return (
     <footer className="mt-24 border-t border-ink-border bg-ink text-ink-foreground">
       <div className="container-afpg grid gap-10 py-14 md:grid-cols-4">
@@ -53,21 +51,7 @@ export function Footer() {
         <div>
           <p className="eyebrow text-primary">Associação (AFPG)</p>
           <ul className="mt-4 space-y-2 text-sm text-ink-muted">
-            <li>{ASSOCIATION.address}</li>
             <li>
-              <a
-                href={`tel:${ASSOCIATION.phone.replace(/\s/g, "")}`}
-                className="hover:text-ink-foreground"
-              >
-                tel. {ASSOCIATION.phone}
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${ASSOCIATION.email}`} className="hover:text-ink-foreground">
-                {ASSOCIATION.email}
-              </a>
-            </li>
-            <li className="pt-2">
               <Link to="/documentos" className="hover:text-ink-foreground">
                 Documentos oficiais
               </Link>

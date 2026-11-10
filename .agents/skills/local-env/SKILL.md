@@ -58,7 +58,9 @@ make local_role EMAIL=<email> ROLE=admin      # or manager, user
 
 One short message with:
 
-- **Where:** the local URL and the exact pages that changed.
+- **Where:** full `http://localhost:8080` links to the exact pages that changed (for example
+  `http://localhost:8080/resultados`), with the `PORT` you used if it isn't 8080. Testing is
+  local only: never expose the site through a tunnel, public URL or deploy to show a change.
 - **What changed**, in a sentence.
 - **What to try:** a numbered list covering the main path, the edge cases (empty data, wrong
   input, each role that sees it: user, manager, admin), and a phone-width window.
@@ -68,4 +70,5 @@ One short message with:
 
 Stop there. When the maintainer reports a problem, fix it, run `make test` again, rebuild what
 changed (`make local_build_and_deploy_backend` for `api/`; the site reloads by itself), and tell
-them to refresh. Move on to the `ship` skill only once they say they're satisfied.
+them to refresh the same `http://localhost:8080` link. Move on to the `ship` skill only once
+they say they're satisfied.
