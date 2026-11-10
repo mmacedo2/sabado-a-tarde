@@ -2,6 +2,10 @@
 {
   "name": "sabado-a-tarde-web",
   "compatibility_date": "2026-08-20",
+  // Served only on the custom domain set in the Cloudflare dashboard. Left out, these default to
+  // true and every deploy turns the *.workers.dev address back on.
+  "workers_dev": false,
+  "preview_urls": false,
   "observability": { "enabled": true },
   // /api/* is forwarded to the API Worker (see src/server.ts).
   "services": [{ "binding": "API", "service": "sabado-a-tarde-api" }]
