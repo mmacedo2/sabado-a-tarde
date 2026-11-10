@@ -14,6 +14,7 @@ import { Route as CompetitionRouteImport } from './routes/$competition'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AssociacaoRouteImport } from './routes/associacao'
 import { Route as ClassificacoesRouteImport } from './routes/classificacoes'
+import { Route as CompeticoesRouteImport } from './routes/competicoes'
 import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as GaleriaRouteImport } from './routes/galeria'
@@ -62,6 +63,11 @@ const AssociacaoRoute = AssociacaoRouteImport.update({
 const ClassificacoesRoute = ClassificacoesRouteImport.update({
   id: '/classificacoes',
   path: '/classificacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompeticoesRoute = CompeticoesRouteImport.update({
+  id: '/competicoes',
+  path: '/competicoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentosRoute = DocumentosRouteImport.update({
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -221,6 +228,7 @@ export interface FileRoutesByTo {
   '/$competition': typeof CompetitionRoute
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -253,6 +261,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/associacao': typeof AssociacaoRoute
   '/classificacoes': typeof ClassificacoesRoute
+  '/competicoes': typeof CompeticoesRoute
   '/documentos': typeof DocumentosRoute
   '/entrar': typeof EntrarRoute
   '/galeria': typeof GaleriaRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/associacao'
     | '/classificacoes'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/$competition'
     | '/associacao'
     | '/classificacoes'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/associacao'
     | '/classificacoes'
+    | '/competicoes'
     | '/documentos'
     | '/entrar'
     | '/galeria'
@@ -379,6 +391,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AssociacaoRoute: typeof AssociacaoRoute
   ClassificacoesRoute: typeof ClassificacoesRoute
+  CompeticoesRoute: typeof CompeticoesRoute
   DocumentosRoute: typeof DocumentosRoute
   EntrarRoute: typeof EntrarRoute
   GaleriaRoute: typeof GaleriaRoute
@@ -426,6 +439,13 @@ declare module '@tanstack/react-router' {
       path: '/classificacoes'
       fullPath: '/classificacoes'
       preLoaderRoute: typeof ClassificacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/competicoes': {
+      id: '/competicoes'
+      path: '/competicoes'
+      fullPath: '/competicoes'
+      preLoaderRoute: typeof CompeticoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentos': {
@@ -641,6 +661,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   AssociacaoRoute: AssociacaoRoute,
   ClassificacoesRoute: ClassificacoesRoute,
+  CompeticoesRoute: CompeticoesRoute,
   DocumentosRoute: DocumentosRoute,
   EntrarRoute: EntrarRoute,
   GaleriaRoute: GaleriaRoute,

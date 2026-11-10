@@ -31,18 +31,33 @@ export const Route = createFileRoute("/resultados")({
 });
 
 function ResultsPage() {
-  const [competition, setCompetition] = useState("todas");
-  const [round, setRound] = useState("todas");
-  const [club, setClub] = useState("todas");
-  const [mode, setMode] = useState<"resultados" | "proximos">("resultados");
-
   const matches = Route.useLoaderData();
   const { season, clubs, competitions } = useCatalog();
   useLiveRefresh(matches.some(isLive));
 
+  // Opens on the main league's latest round with a result, like the home page and standings.
+  const mainLeague = competitions.find((c) => c.kind === "league")?.slug ?? "todas";
+  const latestRound =
+    [...matches]
+      .filter((m) => m.competition === mainLeague && (isPlayed(m) || isLive(m)))
+      .sort(byDateDesc)[0]?.round ?? "todas";
+
+  const [competition, setCompetition] = useState(mainLeague);
+  const [round, setRound] = useState(latestRound);
+  const [club, setClub] = useState("todas");
+  const [mode, setMode] = useState<"resultados" | "proximos">("resultados");
+
   const rounds = useMemo(
-    () => Array.from(new Set([...matches].sort(byDateAsc).map((m) => m.round))),
-    [matches],
+    () =>
+      Array.from(
+        new Set(
+          [...matches]
+            .filter((m) => competition === "todas" || m.competition === competition)
+            .sort(byDateAsc)
+            .map((m) => m.round),
+        ),
+      ),
+    [matches, competition],
   );
   // Games being played show under results, with their live score.
   const results = useMemo(
@@ -75,7 +90,10 @@ function ResultsPage() {
             {(["resultados", "proximos"] as const).map((m) => (
               <button
                 key={m}
-                onClick={() => setMode(m)}
+                onClick={() => {
+                  setMode(m);
+                  setRound("todas");
+                }}
                 className={`eyebrow rounded-md px-4 py-2.5 transition-colors ${
                   mode === m ? "bg-primary text-primary-foreground" : "text-muted-foreground"
                 }`}
@@ -85,7 +103,14 @@ function ResultsPage() {
             ))}
           </div>
 
-          <Select label="Competição" value={competition} onChange={setCompetition}>
+          <Select
+            label="Competição"
+            value={competition}
+            onChange={(c) => {
+              setCompetition(c);
+              setRound("todas");
+            }}
+          >
             <option value="todas">Todas</option>
             {competitions.map((c) => (
               <option key={c.slug} value={c.slug}>
