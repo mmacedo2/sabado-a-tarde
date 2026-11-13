@@ -16,7 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "hono": "4.13.12",
+    "hono": "4.13.16",
     "zod": "3.25.76"
   },
   "devDependencies": {
